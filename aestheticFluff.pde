@@ -4,7 +4,7 @@ private float noX;
 private float cO;
 private Wave ocean = new Wave(); 
 Fish[] fishies = new Fish[8];
-
+//,alskdlaskdlaskdlaskdlasldkasldkla
 void setup() {
   size(640, 360);
   imports =  new Importer();
