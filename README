@@ -1,12 +1,15 @@
 Working files for the Aesthetic Design Fluff.
 
 CHANGELOG
-*** 1.4.2014 ***
+*** 01.04.2014 ***
 Ability to grab live data from http://www.au.dk/luftkvalitet/
 
-*** 2.4.2014 ***
+*** 02.04.2014 ***
 - Bug-fix and cleanup in data-grabber
 - Seperation of data-grabber in own class (Importer)
 - Added support to handle errors (no internetconnection or server down) 
   and use default values instead
 
+*** 03.04.2013 ***
+- more bugfixing - taking the odd chance that cells may be empty
+  on the website into account.
