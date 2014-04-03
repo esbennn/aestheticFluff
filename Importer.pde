@@ -53,7 +53,7 @@ class Importer {
      meaning that there are no more tags.
      */
     trimmedHtmlSource = htmlSource.substring(1510, 1625);
-      println("Data source in html-format:\n" + trimmedHtmlSource);
+ //     println("Data source in html-format:\n" + trimmedHtmlSource);
     // remove any incomplete tag at the beginning of the source string
     if (trimmedHtmlSource.indexOf(">") < trimmedHtmlSource.indexOf("<")) {
       trimmedHtmlSource = trimmedHtmlSource.substring(trimmedHtmlSource.indexOf(">") +1, trimmedHtmlSource.length()-1);

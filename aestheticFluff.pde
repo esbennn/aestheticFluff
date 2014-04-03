@@ -25,18 +25,18 @@ void setup() {
   println("CO: " + cO);
 
   for (int i=0; i<fishies.length; i++) {
-    fishies[i] = new fish (random(0, width), 350, random(2, 15)); //size and placement of circles
+    fishies[i] = new Fish (random(0, width), 350, random(2, 15)); //size and placement of circles
   }
   noStroke();
 }
 
 
 void draw() {
-  float no2 = importz.getno2();  // should these be moved to class definition?
-  float noX = importz.getnoX();
-  float cO = importz.getcO();
+  float no2 = imports.getNo2();  // should these be moved to class definition?
+  float noX = imports.getNoX();
+  float cO = imports.getCO();
   background(55);
-  ocean.wave(no2, noX, cO);
+  ocean.setValues(no2, noX, cO);
   float mappednoX = ocean.getnoXToWave();
 
   fill(140, 140, 0);

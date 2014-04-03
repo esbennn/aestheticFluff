@@ -2,17 +2,19 @@ class Wave {
 
   float yoff = 0.0;        // 2nd dimension of perlin noise
   float noXToWave;
-  void Wave(float tempno2, float tempNoX, float tempcO) {
+  Wave () {
+  }
+  public void setValues(float tempno2, float tempNoX, float tempcO) {
     float no2 = tempno2;
     float noX = tempNoX;
     float cO = tempcO;
-    println(noX);
-    println("no2 " + no2);
-    println("cO " + cO);
+    //    println(noX);
+    //    println("no2 " + no2);
+    //   println("cO " + cO);
     float no2Color = map(no2, 9, 93, 0, 255); 
     float cOtoIncrement = map(cO, 0.18, 0.35, 0.003, 0.01);
     noXToWave = map(noX, 10, 413, 340, 0); 
-    println("noXMappet " + noXToWave);
+    // println("noXMappet " + noXToWave);
 
 
     // We are going to draw a polygon out of the wave points
@@ -45,5 +47,4 @@ class Wave {
     return noXToWave;
   }
 }
-
 
