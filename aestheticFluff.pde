@@ -1,34 +1,33 @@
-Importer imports;
-private float no2;
-private float noX;
-private float cO;
+importer importz = new importer();
+wave ocean = new wave();
 
+fish[] fishies = new fish[8];
 void setup() {
-  size(50, 50);
-  imports =  new Importer();
-  // grab the data from the website
-  try {
-    imports.getData();
-    getDataValues();
+
+size(640, 360);
+for (int i=0; i<fishies.length; i++) {
+    fishies[i] = new fish (random(0,width), 350, random(2, 15)); //size and placement of circles
   }
-  catch(Exception e) {
-    println(e);
-    println("Using default values instead.");
-    no2 = 30.0;
-    noX = 60.0;
-    cO = 0.22;
-  }
+  noStroke();
+  
 
-  println("NO2: " + no2);
-  println("NOx: " + noX);
-  println("CO: " + cO);
-}
-private void getDataValues() {  //method to get the data values from the html source. 
-  no2 = imports.getNo2();    //is only run if there are no errors getting the data...
-  noX = imports.getNoX();
-  cO = imports.getCO();
 }
 
-void draw() {
-}
 
+void draw(){
+  float no2 = importz.getno2();
+  float noX = importz.getnoX();
+  float cO = importz.getcO();
+  background(55);
+   ocean.wave(no2, noX, cO);
+  
+  float mappednoX = ocean.getnoXToWave();
+   
+   fill(140,140,0);
+      for (int i=0; i<fishies.length; i++) { //important for-loop. first, each object is created
+    fishies[i].drawCircles (); //first, each object is created,
+    fishies[i].bouncing ();   //then each object is given bouncy properties
+    fishies[i].gravity();
+
+}
+}
