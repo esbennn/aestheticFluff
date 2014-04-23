@@ -1,67 +1,53 @@
-class Fish { //the circles class. Here, everything concerning the change of the behavior and appearance of each circle is manipulated
-
+class Fish {
   float x;
-  float y; 
-  float circleSize;
+  float y;
+  int frame;
+  float xspeed;
+  float yspeed = 0.2;
+  int W = 30;
+  int H = 17;
+ PImage nemo;
+ int scaling = 1;
 
-  boolean dragged;
-  float xspeed = random (-0.5, 0.5);
-  float yspeed = random (-0.5, 0.5);
 
-
-
-  Fish (float xpos, float ypos, float bSize) { //parameters that comes with the objects instantiated from above
-
-      x = xpos;
+  Fish (float xpos, float ypos, float speed) {
+    xspeed = speed;
+    x = xpos;
     y = ypos;
-    circleSize = bSize;
+     nemo = loadImage("fishy"+int(random(1,4))+".png");
+  }
 
-    dragged = false;
-
-    }
-    void gravity() { // sets the circles in motion if the enterIsPressed boolean is true
-   
-      x += xspeed;
-      y += yspeed;
+  void update() {
+    boolean goingLeft = true; 
     
-  }
-  
-
-
-
-
-
-  void bouncing () { //makes the circles bounce when hitting a wall
-
-    if ( (x<0) || (x>width-circleSize)) {
-
-      xspeed = -xspeed;
-    }
-
-    if ( (y<330)  || (y>height-circleSize)) {
-      yspeed = -yspeed;
-    }
-  }
-
-  void drawCircles () { //draws the circles with a color depending on if the circle is clicked or not
-
-
-      fill(255,255,0);
+    pushMatrix();
+    translate(x, y);
+    x +=xspeed;
+    y +=yspeed;
     
-    ellipse (x, y, circleSize,5);
-        /*beginShape();
-  fill(0,0,255);
-  vertex(50, 50);
- vertex(75,75);
-vertex(100,50);
-vertex(125,75);
-vertex(100,100);
-vertex(75,80);
-vertex(50,100);
-endShape();*/
+
+    if (x > width+50 || x < -50) {
+      xspeed *= -1;
+      scaling *=-1;
+    }
+    if (y >=height || y <= 345) {
+      yspeed *= -1;
+    }
+    if(xspeed<0 && scaling ==1){
+      scaling =-1;
+    }
+    if(xspeed>0 && scaling == -1)
+    {
+      scaling = 1;
+    }
+scale(scaling,1);
+println(scaling);
+
+    image(nemo, -50, -37.5, W, H);
+
+    popMatrix();
+
   }
-
-
-
 }
+
 

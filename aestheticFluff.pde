@@ -2,6 +2,8 @@ private Importer imports;
 private float no2;
 private float noX;
 private float cO;
+
+
 private Wave ocean = new Wave(); //lala
 Fish[] fishies = new Fish[8];
 //,alskdlaskdlaskdlaskdlasldkasldkla
@@ -25,8 +27,11 @@ void setup() {
   println("CO: " + cO);
 
   for (int i=0; i<fishies.length; i++) {
-    fishies[i] = new Fish (random(0, width), 350, random(2, 15)); //size and placement of circles
+    fishies[i] = new Fish (random(37.5,640), random(350,370), random(-3, 3)); //size and placement of circles
   }
+    /*  for(int i = 0; i< nemo.length; i ++) {
+      nemo[i] = loadImage("fishy.png");
+    }*/
   noStroke();
 }
 
@@ -41,9 +46,7 @@ void draw() {
 
   fill(140, 140, 0);
   for (int i=0; i<fishies.length; i++) { //important for-loop. first, each object is created
-    fishies[i].drawCircles ();           //first, each object is created,
-    fishies[i].bouncing ();              //then each object is given bouncy properties
-    fishies[i].gravity();
+    fishies[i].update();
   }
   
 }
