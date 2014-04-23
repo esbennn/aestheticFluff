@@ -2,7 +2,7 @@ private Importer imports;
 private float no2;
 private float noX;
 private float cO;
-private Wave ocean = new Wave(); 
+private Wave ocean = new Wave(); //lala
 Fish[] fishies = new Fish[8];
 //,alskdlaskdlaskdlaskdlasldkasldkla
 void setup() {
