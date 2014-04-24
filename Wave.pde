@@ -13,7 +13,7 @@ class Wave {
     //   println("cO " + cO);
     float no2Color = map(no2, 9, 93, 0, 255); 
     float cOtoIncrement = map(cO, 0.18, 0.35, 0.003, 0.01);
-    noXToWave = map(noX, 10, 413, 340, 0); 
+    noXToWave = map(noX, 10, 413, 260, 0); 
     // println("noXMappet " + noXToWave);
 
 
@@ -43,8 +43,6 @@ class Wave {
 
     endShape(CLOSE);
   }
-  float getnoXToWave() {
-    return noXToWave;
-  }
+
 }
 
