@@ -27,7 +27,7 @@ void setup() {
   println("CO: " + cO);
 
   for (int i=0; i<fishies.length; i++) {
-    fishies[i] = new Fish (random(37.5,640), random(350,370), random(-3, 3)); //size and placement of circles
+    fishies[i] = new Fish (random(37.5,640), random(350,370), random(-2, 2)); //size and placement of circles
   }
     /*  for(int i = 0; i< nemo.length; i ++) {
       nemo[i] = loadImage("fishy.png");

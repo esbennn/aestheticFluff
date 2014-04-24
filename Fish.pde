@@ -30,7 +30,7 @@ class Fish {
       xspeed *= -1;
       scaling *=-1;
     }
-    if (y >=height || y <= 345) {
+    if (y >=height+19 || y <= 368) {
       yspeed *= -1;
     }
     if(xspeed<0 && scaling ==1){
@@ -41,7 +41,7 @@ class Fish {
       scaling = 1;
     }
 scale(scaling,1);
-println(scaling);
+
 
     image(nemo, -50, -37.5, W, H);
 
