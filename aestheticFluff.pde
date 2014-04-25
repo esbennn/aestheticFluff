@@ -2,17 +2,11 @@ private Importer imports;
 private float no2;
 private float noX;
 private float cO;
-
 private Wave ocean = new Wave(); 
-//testing
 private Sky sky;
-
 
 ArrayList <Fish> fishies;
 ArrayList <Garbage> badStuff;
-
-
-
 
 void setup() {
 
@@ -31,7 +25,7 @@ void setup() {
   }  
   //*****
   // SETTING TESTING VALUES!
- //setValues(80, 8.0, 0.12);
+ setValues(70, 8.0, 0.12);
   //*****
 
   
@@ -51,7 +45,9 @@ void setup() {
 
     fishies.add(new Fish (random(37.5, 640), random(350, 370), random(-1.5, 1.5))); //size and placement of circles
   }
-  for (int i = 0; i<noXMapped;i++) {
+  for (int i=40; i> no2Mapped; i--) {
+    println(i);
+ 
     badStuff.add(new Garbage (random(37.5, 640), random(350, 370), 0));
   }
   noStroke();
