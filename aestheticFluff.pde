@@ -2,12 +2,18 @@ private Importer imports;
 private float no2;
 private float noX;
 private float cO;
+
 private Wave ocean = new Wave(); 
 //testing
 private Sky sky;
-//
-Fish[] fishies = new Fish[8];
-//,alskdlaskdlaskdlaskdlasldkasldkla
+
+
+ArrayList <Fish> fishies;
+ArrayList <Garbage> badStuff;
+
+
+
+
 void setup() {
 
   size(640, 360, OPENGL);
@@ -22,45 +28,52 @@ void setup() {
     no2 = 30.0;
     noX = 60.0;
     cO = 0.22;
-  }
-  
+  }  
   //*****
   // SETTING TESTING VALUES!
-  //setValues(46.5, 8.0, 0.12);
+  //setValues(60.5, 8.0, 0.12);
   //*****
+
+  
   // printing values
   println("NO2: " + no2);
   println("NOx: " + noX);
   println("CO: " + cO);
   //adding sky with values
-  sky = new Sky(no2, noX, cO);
+  sky = new Sky(no2, noX, cO); 
+  fishies = new ArrayList<Fish>();
+  badStuff = new ArrayList<Garbage>();
+  float no2Mapped = map(no2, 25, 70, 30, 0);
+  float noXMapped = map(noX, 40, 250, 0, 10);
 
-  for (int i=0; i<fishies.length; i++) {
-    fishies[i] = new Fish (random(0, width), 350, random(2, 15)); //size and placement of circles
+  println(no2Mapped);
+  for (int i=0; i<no2Mapped; i++) {
+
+    fishies.add(new Fish (random(37.5, 640), random(350, 370), random(-1.5, 1.5))); //size and placement of circles
+  }
+  for (int i = 0; i<noXMapped;i++) {
+    badStuff.add(new Garbage (random(37.5, 640), random(350, 370), 0));
   }
   noStroke();
 }
 
 
 void draw() {
-//  no2 = imports.getNo2();  // should these be moved to class definition?
-//  noX = imports.getNoX();
-//  cO = imports.getCO();
-  background(55);
-  //adding sky
-  sky.animate();
-  //
-  colorMode(RGB); //setting colormode back to RGB, HSB only in Sky-class
+   sky.animate();
   ocean.setValues(no2, noX, cO);
-  float mappednoX = ocean.getnoXToWave();
 
   fill(140, 140, 0);
-  for (int i=0; i<fishies.length; i++) { //important for-loop. first, each object is created
-    fishies[i].drawCircles ();           //first, each object is created,
-    fishies[i].bouncing ();              //then each object is given bouncy properties
-    fishies[i].gravity();
+
+  for (int i=0; i<fishies.size(); i++) { //important for-loop. first, each object is created
+    fishies.get(i).update();
+    fishies.get(i).setValues(no2, noX, cO);
+    if (i<badStuff.size()) {
+      badStuff.get(i).update();
+      badStuff.get(i).setValues(no2, noX, cO);
+    }
   }
   
+
 }
 private void getDataValues() {  //method to get the data values from the html source. 
   no2 = imports.getNo2();    //is only run if there are no errors getting the data...

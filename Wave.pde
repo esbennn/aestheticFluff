@@ -11,15 +11,16 @@ class Wave {
     //    println(noX);
     //    println("no2 " + no2);
     //   println("cO " + cO);
-    float no2Color = map(no2, 9, 93, 0, 255); 
+    float no2Color = map(no2, 50, 170, 0, 255); 
+        float no2Color2 = map(no2, 50, 170, 255,0); 
     float cOtoIncrement = map(cO, 0.18, 0.35, 0.003, 0.01);
-    noXToWave = map(noX, 10, 413, 340, 0); 
+    noXToWave = map(noX, 10, 413, 260, 0); 
     // println("noXMappet " + noXToWave);
 
 
     // We are going to draw a polygon out of the wave points
     beginShape(); 
-    fill(0, no2Color, 230);
+    fill(50, no2Color2, no2Color);
     // Option #1: 2D Noise
     // float xoff = yoff; // Option #2: 1D Noise
     float xoff = 0;
@@ -43,8 +44,6 @@ class Wave {
 
     endShape(CLOSE);
   }
-  float getnoXToWave() {
-    return noXToWave;
-  }
+
 }
 
