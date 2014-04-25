@@ -25,7 +25,7 @@ void setup() {
   }  
   //*****
   // SETTING TESTING VALUES!
- setValues(70, 8.0, 0.12);
+// setValues(40, 8.0, 0.12);
   //*****
 
   
@@ -45,7 +45,7 @@ void setup() {
 
     fishies.add(new Fish (random(37.5, 640), random(350, 370), random(-1.5, 1.5))); //size and placement of circles
   }
-  for (int i=40; i> no2Mapped; i--) {
+  for (int i=30; i> no2Mapped; i--) {
     println(i);
  
     badStuff.add(new Garbage (random(37.5, 640), random(350, 370), 0));
@@ -63,11 +63,12 @@ void draw() {
   for (int i=0; i<fishies.size(); i++) { //important for-loop. first, each object is created
     fishies.get(i).update();
     fishies.get(i).setValues(no2, noX, cO);
-    if (i<badStuff.size()) {
+
+  }
+      for (int i = 0; i<badStuff.size();i++) {
       badStuff.get(i).update();
       badStuff.get(i).setValues(no2, noX, cO);
     }
-  }
   
 
 }
