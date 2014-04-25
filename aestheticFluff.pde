@@ -33,7 +33,7 @@ void setup() {
   println("CO: " + cO);
 
   float no2Mapped = map(no2, 25, 70, 30, 0);
-  float noXMapped = map(noX, 10, 413, 0, 10);
+  float noXMapped = map(noX, 40, 250, 0, 10);
 
   println(no2Mapped);
   for (int i=0; i<no2Mapped; i++) {
