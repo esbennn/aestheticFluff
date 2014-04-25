@@ -31,7 +31,7 @@ void setup() {
   }  
   //*****
   // SETTING TESTING VALUES!
-  //setValues(60.5, 8.0, 0.12);
+ //setValues(80, 8.0, 0.12);
   //*****
 
   
