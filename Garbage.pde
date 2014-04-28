@@ -11,13 +11,10 @@ class Garbage extends Fish {
 
     y +=yspeed;
 
-
     if (y >=height+19) {
       yspeed =0;
     }
-
     image(nemo, -50, -37.5, W, H);
-
     popMatrix();
   }
 } 

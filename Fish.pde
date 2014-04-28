@@ -9,7 +9,6 @@ class Fish {
   PImage nemo;
   int scaling = 1;
 
-
   Fish (float xpos, float ypos, float speed) {
     xspeed = speed;
     x = xpos;
@@ -30,7 +29,6 @@ class Fish {
     translate(x, y);
     x +=xspeed;
     y +=yspeed;
-
 
     if (x > width+50 || x < -50) {
       xspeed *= -1;
