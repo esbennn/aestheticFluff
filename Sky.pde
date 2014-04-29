@@ -8,7 +8,7 @@ class Sky {
   private color buttom;// = color(r*6,g*1.6,b);
   
   Sky(float no2, float noX, float cO) {
-    int hue = int(120 - noX);
+    int hue = int(140 - noX);
     int brightness = int(100 - no2);
     colorMode(HSB, 200, 99, 99); //using HSB colors for this, so we can just adjust satuation and brightness
     top = color(hue, 85, brightness);

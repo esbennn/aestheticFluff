@@ -25,7 +25,8 @@ void setup() {
   }  
   //*****
   // SETTING TESTING VALUES!
-//setValues(45, 107, 0.31);
+  //an example of low values is 10, 20, 0.19
+  //setValues(10, 20, 0.19);
   //*****
 
   
