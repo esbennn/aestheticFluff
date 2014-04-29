@@ -6,14 +6,19 @@ class Sky {
 //  private color buttom = color(196,235,255);
   private color top;// = color(r,g,b);
   private color buttom;// = color(r*6,g*1.6,b);
+  private float no2, noX, cO;
   
   Sky(float no2, float noX, float cO) {
+    this.no2 = no2;
+    this.noX = noX;
+    this.cO = cO;
+    
     int hue = int(140 - noX);
     int brightness = int(100 - no2);
     colorMode(HSB, 200, 99, 99); //using HSB colors for this, so we can just adjust satuation and brightness
     top = color(hue, 85, brightness);
     buttom = color(hue, 5, 95);
-      colorMode(RGB); //using RGB for everything else
+    colorMode(RGB); //using RGB for everything else
 
   }
   public void animate() {
