@@ -10,7 +10,7 @@ ArrayList <Garbage> badStuff;
 
 void setup() {
 
-  size(640, 360, OPENGL);
+  size(640, 360, P2D);
   imports =  new Importer();
   try {
     imports.getData();
@@ -27,6 +27,7 @@ void setup() {
   // SETTING TESTING VALUES!
   //an example of low values is 10, 20, 0.19
   //setValues(10, 20, 0.19);
+  //setValues(70, 200, 0.36);
   //*****
 
   
@@ -71,6 +72,7 @@ void draw() {
       badStuff.get(i).update();
       badStuff.get(i).setValues(no2, noX, cO);
     }
+
 }
 
 private void getDataValues() {  //method to get the data values from the html source. 
