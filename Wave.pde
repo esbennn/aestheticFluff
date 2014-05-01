@@ -27,7 +27,7 @@ class Wave {
     for (float x = 0; x <= width; x += 5) {
       // Calculate a y value according to noise, map to 
       float y = map(noise(xoff, yoff), 0, 1, 340, noXToWave); // Option #1: 2D Noise
-      // float y = map(noise(xoff), 0, 1, 200,300);    // Option #2: 1D Noise
+     
       // Set the vertex
       vertex(x, y); 
       // Increment x dimension for noise
