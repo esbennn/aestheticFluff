@@ -67,7 +67,7 @@ void draw() {
   int secs = second();
 
   //if (min % 5 == 0 && secs == 0){ // DETTE ER DEN DER SKAL BRUGES ENDELIGT - Og setValues-kaldet (ovenfor) skal fjernes
-  if (min/* % 5 == 0*/ ==37 && secs == 45) {  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
+  if (min/* % 5 == 0*/ ==48 && secs == 0) {  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
     println("Checking server for updated data ...");
     getDataValues();
     valuesChanged = true;
@@ -90,14 +90,15 @@ void draw() {
    
     float fishDiff = no2Mapped - no2MappedUpdated;
     
-    for (int i=0; i<fishDiff; i++) {
+    for (int i=0; i<=fishDiff-1; i++) {
       fishies.get(i).killFish();
-      fishies.get(i).setValues(no2, noX, cO);
       if (fishies.get(i).liveOrDie() == true) {
         fishies.remove(i);
-   /*     if(i==fishDiff){
+        println(i +"     "+ fishDiff);
+        if(i==fishDiff){
+  
           valuesChanged = false;
-      }*/
+      }
     }
   }
   }
