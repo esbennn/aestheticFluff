@@ -4,9 +4,11 @@ private float noX;
 private float cO;
 private Wave ocean;
 private Sky sky;
-
+boolean valuesChanged = false;
 ArrayList <Fish> fishies;
 ArrayList <Garbage> badStuff;
+ float no2Mapped;
+ float no2MappedUpdated;
 
 void setup() {
 
@@ -26,30 +28,28 @@ void setup() {
   //*****
   // SETTING TESTING VALUES!
   //an example of low values is 10, 20, 0.19
-  
-  //setValues(10, 20, 0.19);
-<<<<<<< HEAD
 
-  //setValues(70, 200, 0.36);
-=======
-  setValues(70, 200, 0.36);
->>>>>>> 021e27a8b1fb3653fc072dec30ee383cebcd772b
-  //*****
+  setValues(10, 20, 0.19);
 
-  
+
+  // setValues(70, 200, 0.36);
+
+
+
+
   // printing values
   println("NO2: " + no2);
   println("NOx: " + noX);
   println("CO: " + cO);
-  
+
   //adding sky with values
   ocean= new Wave(no2, noX, cO);
   sky = new Sky(no2, noX, cO); 
-  
+
   fishies = new ArrayList<Fish>();
   badStuff = new ArrayList<Garbage>();
-  
-  float no2Mapped = map(no2, 25, 70, 30, 0);
+
+  no2Mapped = map(no2, 25, 70, 30, 0);
 
   for (int i=0; i<no2Mapped; i++) {
 
@@ -65,29 +65,46 @@ void setup() {
 void draw() {
   int min = minute();
   int secs = second();
-  
-  //if (min % 5 == 0 && secs == 0){ // DETTE ER DEN DER SKAL BRUGES ENDELIGT - Og setValues-kaldet (ovenfor) skal fjernes
-  if (min/* % 5 == 0*/ ==50 && secs == 20){  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
-    println("Checking server for updated data ...");
-   getDataValues();
 
-   
+  //if (min % 5 == 0 && secs == 0){ // DETTE ER DEN DER SKAL BRUGES ENDELIGT - Og setValues-kaldet (ovenfor) skal fjernes
+  if (min/* % 5 == 0*/ ==37 && secs == 45) {  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
+    println("Checking server for updated data ...");
+    getDataValues();
+    valuesChanged = true;
   }
-   sky.fade(no2, noX, cO); // make the sky update its color
-   sky.animate();
-   ocean.update();
-  
+  sky.fade(no2, noX, cO); // make the sky update its color
+  sky.animate();
+  ocean.update();
+
   fill(140, 140, 0);
 
-  for (int i=0; i<fishies.size(); i++) { //important for-loop. first, each object is created
-    fishies.get(i).update();
-    fishies.get(i).setValues(no2, noX, cO);
-  }
-      for (int i = 0; i<badStuff.size();i++) {
-      badStuff.get(i).update();
-      badStuff.get(i).setValues(no2, noX, cO);
+  if (valuesChanged == false) {
+    for (int i=0; i<fishies.size(); i++) { //important for-loop. first, each object is created
+      fishies.get(i).update();
+      fishies.get(i).setValues(no2, noX, cO);
     }
-
+  }
+  
+  if (valuesChanged == true) {
+    no2MappedUpdated = map(no2, 25, 70, 30, 0);
+   
+    float fishDiff = no2Mapped - no2MappedUpdated;
+    
+    for (int i=0; i<fishDiff; i++) {
+      fishies.get(i).killFish();
+      fishies.get(i).setValues(no2, noX, cO);
+      if (fishies.get(i).liveOrDie() == true) {
+        fishies.remove(i);
+   /*     if(i==fishDiff){
+          valuesChanged = false;
+      }*/
+    }
+  }
+  }
+  for (int i = 0; i<badStuff.size();i++) {
+    badStuff.get(i).update();
+    badStuff.get(i).setValues(no2, noX, cO);
+  }
 }
 
 private void getDataValues() {  //method to get the data values from the html source. 
@@ -96,7 +113,7 @@ private void getDataValues() {  //method to get the data values from the html so
   cO = imports.getCO();
 }
 
-private void setValues(float _no2, float _noX, float _cO){ // only for testing purposes
+private void setValues(float _no2, float _noX, float _cO) { // only for testing purposes
   no2 = _no2;
   noX = _noX;
   cO = _cO;
