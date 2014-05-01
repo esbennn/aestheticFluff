@@ -21,7 +21,7 @@ class Cloud {
     
     c = color(tempC - no2);
     
-    alpha = 200 * cO; 
+   // alpha = 300 * cO; 
   }
 
   public void animate() {
@@ -43,6 +43,14 @@ class Cloud {
     //bezierVertex(x-5, x-14, x+5, y-10, x+6, x-7);
     //endShape();
 
+  }
+  
+  public void setAlpha(float a){
+    alpha = a;
+  }
+  
+  public float getAlpha(){
+    return alpha;
   }
 }
 
