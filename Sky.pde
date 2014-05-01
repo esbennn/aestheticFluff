@@ -8,7 +8,8 @@ class Sky {
   private color buttom;// = color(r*6,g*1.6,b);
   private float no2, noX, cO;
 
-  private Cloud cloud;
+  private int hue;
+  private int brightness;
 
   private ArrayList<Cloud> clouds;
 
@@ -17,12 +18,9 @@ class Sky {
     this.noX = noX;
     this.cO = cO;
 
-    int hue = int(140 - noX);
-    int brightness = int(100 - no2);
-    colorMode(HSB, 200, 99, 99); //using HSB colors for this, so we can just adjust satuation and brightness
-    top = color(hue, 85, brightness);
-    buttom = color(hue, 5, 95);
-    colorMode(RGB); //using RGB for everything else
+    hue = int(140 - noX);
+    brightness = int(100 - no2);
+    setColors();
 
     //   cloud = new Cloud(200, no2, cO, -1.5);
     clouds = new ArrayList<Cloud>();
@@ -35,10 +33,34 @@ class Sky {
       cloudX += cloudX;
     }
   }
+  public void setColors() {
+    colorMode(HSB, 200, 99, 99); //using HSB colors for this, so we can just adjust satuation and brightness
+    top = color(hue, 85, brightness);
+    buttom = color(hue, 5, 95);
+    colorMode(RGB); //using RGB for everything else
+  }
+  public void fade(float _no2, float _noX, float _cO) {
+    if (_no2 > no2) {
+      no2 += 0.1;
+    }
+    if (_no2 < no2){
+      no2 -= 0.1;
+    }
+    if (_noX > noX){
+      noX += 0.1;
+    }
+    if (_noX < noX){
+      noX -= 0.1;
+    }
+   // println("nox: " + noX + "no2: " + no2);
+
+    hue = int(140 - noX);
+    brightness = int(100 - no2);
+    setColors();
+  }
   public void animate() {
-    fill(#FF9D9D);
+    fill(#FF9D9D);  // draw gradient sky
     noStroke();
-    //rect(0,0,640,360);
     beginShape();
     fill(top);
     vertex(0, 0);
@@ -50,7 +72,6 @@ class Sky {
     for (Cloud c : clouds) {
       c.animate();
     }
-    // cloud.animate();
   }
 }
 
