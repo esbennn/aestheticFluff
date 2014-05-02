@@ -35,14 +35,13 @@ class WaterQuality {
       fishies.get(i).update();
     }
   }
-  void regulateFish(float _newNo2) {
-    float newNo2 = _newNo2;
-    no2MappedUpdated = map(newNo2, 25, 70, 30, 0);
+  void regulateFish() {
+//no2 update er det samme som no2
 
-    //  println("no2 "+no2Mapped);
+     println("no2 "+no2Mapped + "update" + no2MappedUpdated);
 
     fishDiff = round(no2Mapped - no2MappedUpdated);
-    println("Fjernelse på "+ fishDiff);
+    // println("Fjernelse på "+ fishDiff);
     if (no2Mapped>no2MappedUpdated) {
       for (int i=0; i<fishies.size(); i++) {
         if (i<fishDiff) {
@@ -58,13 +57,15 @@ class WaterQuality {
           fishies.get(i).update();
         }
         if (fishies.size()==flockOfFish-fishDiff) {
-          valuesChanged = false;
+
           println("imrun!!!");
-         
+          valuesChanged = false;
           println(fishies.size());
           flockOfFish = fishies.size();
+         
         }
       }
+      println("the number of fish are" + fishies.size());
     }
     if (no2Mapped<no2MappedUpdated) {
       fishDiff = round(no2MappedUpdated-no2Mapped);
@@ -80,7 +81,9 @@ class WaterQuality {
     }
   }
 
-  void regulateBadStuff() {
+  void regulateBadStuff(float _newNo2) {
+        float newNo2 = _newNo2;
+    no2MappedUpdated = map(newNo2, 25, 70, 30, 0);
     if (no2Mapped<no2MappedUpdated) {
       for (int i=0; i<badStuff.size(); i++) {
         if (i<fishDiff) {
@@ -91,29 +94,79 @@ class WaterQuality {
             println(i);
           }
         }
-
         else {
           badStuff.get(i).update();
         }
-      }
+
         if (badStuff.size()==amountOfGarbage-fishDiff) {
-          valuesChanged = false;
-          println("imrun!!!");
-          no2Mapped = no2MappedUpdated;
-          println(fishies.size());
-          amountOfGarbage = badStuff.size();
+             amountOfGarbage = badStuff.size();
+          println("garbageimrun!!!");
         }
-        if (no2Mapped>no2MappedUpdated) {
-            for (int i=30; i> fishDiff; i--) {
-              badStuff.add(new Garbage (random(37.5, 640), random(350, 370), 0));
-            }
-          }
-          no2Mapped = no2MappedUpdated;
-          valuesChanged = false;
-        }
-      }
-      boolean valuesChanged() {
-        return valuesChanged;
       }
     }
+    if (no2Mapped>no2MappedUpdated) {
+      for (int i=30; i> fishDiff; i--) {
+        badStuff.add(new Garbage (random(37.5, 640), random(350, 370), 0));
+      }
+    }
+    no2Mapped = no2MappedUpdated;
+    valuesChanged = false;
+  }
+
+  boolean valuesChanged() {
+    return valuesChanged;
+  }
+  
+    void updateFish() {
+    for (int i=0; i<fishies.size(); i++) { 
+      fishies.get(i).setLiveOrDie(false);
+      fishies.get(i).update();
+    }
+  }
+  void regulateFish() {
+
+
+     println("no2 "+ no2Mapped + "update" + no2MappedUpdated);
+
+    fishDiff = round(no2Mapped - no2MappedUpdated);
+    // println("Fjernelse på "+ fishDiff);
+    if (no2Mapped>no2MappedUpdated) {
+      for (int i=0; i<fishies.size(); i++) {
+        if (i<fishDiff) {
+          fishies.get(i).setLiveOrDie(true);
+          fishies.get(i).update();
+          if (fishies.get(i).getLiveOrDie() == true) {
+            fishies.remove(i);
+            println(i);
+          }
+        }
+
+        else {
+          fishies.get(i).update();
+        }
+        if (fishies.size()==flockOfFish-fishDiff) {
+
+          println("imrun!!!");
+          valuesChanged = false;
+          println(fishies.size());
+          flockOfFish = fishies.size();
+         
+        }
+      }
+      println("the number of fish are" + fishies.size());
+    }
+    if (no2Mapped<no2MappedUpdated) {
+      fishDiff = round(no2MappedUpdated-no2Mapped);
+      println("tilføjelse på "+ fishDiff + " fisk");
+      for (int i=0; i<fishDiff; i++) {
+        fishies.add(new Fish (random(width+50, 640), random(350, 370), random(-1.5, 1.5))); //size and placement of fish
+      }
+    }
+  }
+  void updateBadStuff() {
+    for (int i = 0; i<badStuff.size();i++) {
+      badStuff.get(i).update();
+    }
+  }
+}
 

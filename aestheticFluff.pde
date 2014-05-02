@@ -26,8 +26,8 @@ void setup() {
   // SETTING TESTING VALUES!
   //an example of low values is 10, 20, 0.19
 
-  setValues(70, 150, 0.19);
-  // setValues(70, 200, 0.36);
+  setValues(10, 50, 0.19);
+   //setValues(70, 200, 0.36);
 
   // printing values
   println("NO2: " + no2);
@@ -39,12 +39,12 @@ void setup() {
   sky = new Sky(no2, noX, cO); 
   waterLife = new WaterQuality(no2);
 }
-void draw() {
+void draw() {//asdsa
   int min = minute();
   int secs = second();
 
   //if (min % 5 == 0 && secs == 0){ // DETTE ER DEN DER SKAL BRUGES ENDELIGT - Og setValues-kaldet (ovenfor) skal fjernes
-  if (min/* % 5 == 0*/ ==11 && secs == 15) {  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
+  if (min/* % 5 == 0*/ ==21 && secs == 40) {  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
     println("Checking server for updated data ...");
     getDataValues();
     valuesChanged = true;
@@ -61,8 +61,10 @@ void draw() {
   }
   
   if (valuesChanged == true) {
-    waterLife.regulateFish(no2);
+    waterLife.regulateBadStuff(no2);
+    waterLife.regulateFish();
     valuesChanged = waterLife.valuesChanged();
+   
   }
 }
 

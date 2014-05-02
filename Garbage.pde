@@ -12,8 +12,14 @@ class Garbage extends Fish {
     y +=yspeed;
 
     if (y >=height+19) {
-      yspeed =0;
+
       if (killFish == true) {
+        y +=0.1;
+      }
+      else {
+        yspeed =0;
+      }
+      if (y>height+30) {
         killMe = true;
       }
     }
