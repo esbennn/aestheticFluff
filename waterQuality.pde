@@ -9,6 +9,7 @@ class WaterQuality {
   float no2MappedUpdated;
   float no2;
   boolean reset = false;
+  float fishIncoming = 0;
 
   WaterQuality(float _no2) {
     no2 = _no2;
@@ -59,7 +60,7 @@ class WaterQuality {
         }
         if (fishies.size()==flockOfFish-fishDiff) {
 
-          println("imrun!!!");
+          println("No more fish is going to die. " + fishDiff + " fish left the area!");
           valuesChanged = false;
           //  println(fishies.size());
           flockOfFish = fishies.size();
@@ -68,13 +69,17 @@ class WaterQuality {
       }
       // println("the number of fish are " + fishies.size());
     }
+
     if (no2Mapped<no2MappedUpdated) {
 
       //println("tilføjelse på "+ fishDiff + " fisk");
-      for (int i=0; i<fishDiff; i++) {
+      while(fishIncoming<fishDiff) {
         fishies.add(new Fish (random(width+50, 640), random(350, 370), random(-1.5, 1.5))); //size and placement of fish
-        no2Mapped = no2MappedUpdated;
+        fishIncoming++;
+        println("fishies are generated!!");
       }
+      no2Mapped = no2MappedUpdated;
+      valuesChanged = false;
     }
   }
   void updateBadStuff() {
@@ -109,7 +114,7 @@ class WaterQuality {
       }
     }
     //  println("fishdif is " + fishDiff);
-    // println(no2Mapped + "  " + no2MappedUpdated);
+  //   println(no2Mapped + "  " + no2MappedUpdated);
     if (no2Mapped>no2MappedUpdated && reset == false) {
       println("this big is badstuff " + badStuff.size());
       for (int i=0; i< abs(fishDiff); i++) {

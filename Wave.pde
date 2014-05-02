@@ -43,28 +43,40 @@ class Wave {
     endShape(CLOSE);
   }
   public void fade(float _no2, float _noX, float _cO) {
-    no2Color = map(no2, 10, 150, 30, 255); 
-    no2Color2 = map(no2, 10, 150, 80, 0); 
-    cOtoIncrement = map(cO, 0.18, 0.50, 0.003, 0.01);
-    noXToWave = map(noX, 10, 250, 260, 0);
     
-    if (_no2 > no2) {
-      no2 += 0.1;
+    
+    float _no2Color = map(no2, 10, 150, 30, 255); 
+    float _no2Color2 = map(no2, 10, 150, 80, 0); 
+    float _cOtoIncrement = map(cO, 0.18, 0.50, 0.003, 0.01);
+    float _noXToWave = map(noX, 10, 250, 260, 0);
+    
+    if (_no2Color > no2Color) {
+      no2Color += 0.1;
     }
-    if (_no2 < no2) {
-      no2 -= 0.1;
+      if (_no2Color2 > no2Color2) {
+      no2Color2 += 0.1;
     }
-    if (_noX > noX) {
-      noX += 0.1;
+    if (_cOtoIncrement > cOtoIncrement) {
+      cOtoIncrement += 0.0001;
     }
-    if (_noX < noX) {
-      noX -= 0.1;
+        if (_noXToWave > noXToWave) {
+      noXToWave += 0.1;
+    }
+    
+    
+    if (_no2Color < no2Color) {
+      no2Color -= 0.1;
+    }
+      if (_no2Color2 < no2Color2) {
+      no2Color2 -= 0.1;
+    }
+    if (_cOtoIncrement <cOtoIncrement) {
+      cOtoIncrement -= 0.0001;
+    }
+        if (_noXToWave < noXToWave) {
+      noXToWave -= 0.1;
     }
     // println("nox: " + noX + "no2: " + no2);
-
-    hue = int(140 - noX);
-    brightness = int(100 - no2);
-    setColors();
   }
 }
 
