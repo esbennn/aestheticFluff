@@ -44,7 +44,7 @@ void draw() {//asdsa
   int secs = second();
 
   //if (min % 5 == 0 && secs == 0){ // DETTE ER DEN DER SKAL BRUGES ENDELIGT - Og setValues-kaldet (ovenfor) skal fjernes
-  if (min/* % 5 == 0*/ ==21 && secs == 40) {  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
+  if (min/* % 5 == 0*/ ==30 && secs == 15) {  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
     println("Checking server for updated data ...");
     getDataValues();
     valuesChanged = true;
@@ -57,7 +57,7 @@ void draw() {//asdsa
 
   if (valuesChanged == false) {
     waterLife.updateFish();
-    waterLife.updateBadStuff();
+   waterLife.updateBadStuff();
   }
   
   if (valuesChanged == true) {

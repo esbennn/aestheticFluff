@@ -10,6 +10,9 @@ class Garbage extends Fish {
     translate(x, y);
 
     y +=yspeed;
+    if (y<height/1.15) {
+      y+=1;
+    }
 
     if (y >=height+19) {
 
