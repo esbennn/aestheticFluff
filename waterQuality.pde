@@ -3,6 +3,7 @@ class WaterQuality {
   ArrayList <Garbage> badStuff;
   boolean valuesChanged = true;
   int flockOfFish;
+  int amountOfGarbage;
   float fishDiff;
   float no2Mapped;
   float no2MappedUpdated;
@@ -25,6 +26,7 @@ class WaterQuality {
     noStroke();
 
     flockOfFish = fishies.size();
+    amountOfGarbage = badStuff.size();
   }
 
   void updateFish() {
@@ -58,7 +60,7 @@ class WaterQuality {
         if (fishies.size()==flockOfFish-fishDiff) {
           valuesChanged = false;
           println("imrun!!!");
-          no2Mapped = no2MappedUpdated;
+         
           println(fishies.size());
           flockOfFish = fishies.size();
         }
@@ -66,22 +68,52 @@ class WaterQuality {
     }
     if (no2Mapped<no2MappedUpdated) {
       fishDiff = round(no2MappedUpdated-no2Mapped);
-      println("tilføjelse på "+ fishDiff);
+      println("tilføjelse på "+ fishDiff + " fisk");
       for (int i=0; i<fishDiff; i++) {
         fishies.add(new Fish (random(width+50, 640), random(350, 370), random(-1.5, 1.5))); //size and placement of fish
       }
-      no2Mapped = no2MappedUpdated;
-      valuesChanged = false;
     }
   }
   void updateBadStuff() {
     for (int i = 0; i<badStuff.size();i++) {
       badStuff.get(i).update();
-      badStuff.get(i).setValues(no2, noX, cO);
     }
   }
-  boolean valuesChanged() {
-    return valuesChanged;
-  }
-}
+
+  void regulateBadStuff() {
+    if (no2Mapped<no2MappedUpdated) {
+      for (int i=0; i<badStuff.size(); i++) {
+        if (i<fishDiff) {
+          badStuff.get(i).setLiveOrDie(true);
+          badStuff.get(i).update();
+          if (badStuff.get(i).getLiveOrDie() == true) {
+            badStuff.remove(i);
+            println(i);
+          }
+        }
+
+        else {
+          badStuff.get(i).update();
+        }
+      }
+        if (badStuff.size()==amountOfGarbage-fishDiff) {
+          valuesChanged = false;
+          println("imrun!!!");
+          no2Mapped = no2MappedUpdated;
+          println(fishies.size());
+          amountOfGarbage = badStuff.size();
+        }
+        if (no2Mapped>no2MappedUpdated) {
+            for (int i=30; i> fishDiff; i--) {
+              badStuff.add(new Garbage (random(37.5, 640), random(350, 370), 0));
+            }
+          }
+          no2Mapped = no2MappedUpdated;
+          valuesChanged = false;
+        }
+      }
+      boolean valuesChanged() {
+        return valuesChanged;
+      }
+    }
 
