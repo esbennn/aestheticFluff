@@ -26,7 +26,7 @@ void setup() {
   // SETTING TESTING VALUES!
   //an example of low values is 10, 20, 0.19
 
-  setValues(10, 20, 0.19);
+  setValues(70, 150, 0.19);
   // setValues(70, 200, 0.36);
 
   // printing values
@@ -37,19 +37,17 @@ void setup() {
   //adding sky with values
   ocean= new Wave(no2, noX, cO);
   sky = new Sky(no2, noX, cO); 
-  waterQuality = new waterLife();
-
-
+  waterLife = new WaterQuality(no2);
+}
 void draw() {
   int min = minute();
   int secs = second();
 
   //if (min % 5 == 0 && secs == 0){ // DETTE ER DEN DER SKAL BRUGES ENDELIGT - Og setValues-kaldet (ovenfor) skal fjernes
-  if (min/* % 5 == 0*/ ==20 && secs == 15) {  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
+  if (min/* % 5 == 0*/ ==39 && secs == 15) {  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
     println("Checking server for updated data ...");
     getDataValues();
     valuesChanged = true;
-    
   }
   sky.fade(no2, noX, cO); // make the sky update its color
   sky.animate();
@@ -60,15 +58,10 @@ void draw() {
   if (valuesChanged == false) {
     waterLife.updateFish();
   }
+  
   if (valuesChanged == true) {
-    waterLife.regulateFish();
-    println(fishies.size());
-    valuesChanged = waterQuality.valuesChanged();
-  }
-
-  for (int i = 0; i<badStuff.size();i++) {
-    badStuff.get(i).update();
-    badStuff.get(i).setValues(no2, noX, cO);
+    waterLife.regulateFish(no2);
+    valuesChanged = waterLife.valuesChanged();
   }
 }
 
