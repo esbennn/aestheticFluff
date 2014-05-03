@@ -3,16 +3,15 @@ private float no2;
 private float noX;
 private float cO;
 private Wave ocean;
+private WaterQuality waterLife;
 private Sky sky;
-
-ArrayList <Fish> fishies;
-ArrayList <Garbage> badStuff;
+boolean valuesChanged = false;
 
 void setup() {
 
   size(640, 360, P2D);
   imports =  new Importer();
-  try {
+  try {///sadasd 
     imports.getData();
     getDataValues();
   }
@@ -26,63 +25,56 @@ void setup() {
   //*****
   // SETTING TESTING VALUES!
   //an example of low values is 10, 20, 0.19
-  //setValues(10, 20, 0.19);
+
+
+  setValues(70, 200, 0.36);
   //setValues(70, 200, 0.36);
-  //*****
 
   
+  //setValues(10, 20, 0.19);
+
+
+
   // printing values
   println("NO2: " + no2);
   println("NOx: " + noX);
   println("CO: " + cO);
-  
+
   //adding sky with values
   ocean= new Wave(no2, noX, cO);
   sky = new Sky(no2, noX, cO); 
-  
-  fishies = new ArrayList<Fish>();
-  badStuff = new ArrayList<Garbage>();
-  
-  float no2Mapped = map(no2, 25, 70, 30, 0);
-  float noXMapped = map(noX, 40, 250, 0, 10);
+  waterLife = new WaterQuality(no2);
 
-  for (int i=0; i<no2Mapped; i++) {
 
-    fishies.add(new Fish (random(37.5, 640), random(350, 370), random(-1.5, 1.5))); //size and placement of circles
-  }
-  for (int i=30; i> no2Mapped; i--) {
-    badStuff.add(new Garbage (random(37.5, 640), random(350, 370), 0));
-  }
-  noStroke();
 }
-
-
 void draw() {
   int min = minute();
   int secs = second();
   
-  if (min % 5 == 0 && secs == 0){ // DETTE ER DEN DER SKAL BRUGES ENDELIGT - Og setValues-kaldet (ovenfor) skal fjernes
+  if (min % 2 == 0 && secs == 45){ // DETTE ER DEN DER SKAL BRUGES ENDELIGT - Og setValues-kaldet (ovenfor) skal fjernes
   //if (min/* % 5 == 0*/ == 21 && secs == 10){  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
    // println("Checking server for updated data ...");
    getDataValues();
-
+valuesChanged = true;
    
   }
    sky.update(no2, noX, cO); // make the sky update its color
    sky.animate();
    ocean.update();
+  ocean.fade(no2, noX, cO);
   
   fill(140, 140, 0);
 
-  for (int i=0; i<fishies.size(); i++) { //important for-loop. first, each object is created
-    fishies.get(i).update();
-    fishies.get(i).setValues(no2, noX, cO);
+  if (valuesChanged == false) {
+    waterLife.updateFish();
+    waterLife.updateBadStuff();
   }
-      for (int i = 0; i<badStuff.size();i++) {
-      badStuff.get(i).update();
-      badStuff.get(i).setValues(no2, noX, cO);
-    }
 
+  if (valuesChanged == true) {
+    waterLife.regulateBadStuff(no2);
+    waterLife.regulateFish();
+    valuesChanged = waterLife.valuesChanged();
+  }
 }
 
 private void getDataValues() {  //method to get the data values from the html source. 
@@ -91,7 +83,7 @@ private void getDataValues() {  //method to get the data values from the html so
   cO = imports.getCO();
 }
 
-private void setValues(float _no2, float _noX, float _cO){ // only for testing purposes
+private void setValues(float _no2, float _noX, float _cO) { // only for testing purposes
   no2 = _no2;
   noX = _noX;
   cO = _cO;
