@@ -117,14 +117,15 @@ class WaterQuality {
     }
     if (no2Mapped>no2MappedUpdated) {
       println("this big is badstuff " + badStuff.size());
-      while (fishIncoming<abs (fishDiff)) {
+     for(int i = 0; i<abs(fishDiff)&& reset == false; i++ ) {
         badStuff.add(new Garbage (random(37.5, 640), 0, 0));
-        garbageIncoming++;
+        
       }
+      reset = true;
     }
-    else if (no2Mapped>no2MappedUpdated) {
+    
       updateBadStuff();
-    }
+
   }
 
   boolean valuesChanged() {
