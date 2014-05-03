@@ -26,8 +26,14 @@ void setup() {
   // SETTING TESTING VALUES!
   //an example of low values is 10, 20, 0.19
 
+
   setValues(70, 200, 0.36);
   //setValues(70, 200, 0.36);
+
+  
+  //setValues(10, 20, 0.19);
+
+
 
   // printing values
   println("NO2: " + no2);
@@ -38,22 +44,25 @@ void setup() {
   ocean= new Wave(no2, noX, cO);
   sky = new Sky(no2, noX, cO); 
   waterLife = new WaterQuality(no2);
+
+
 }
-void draw() {//asdsa
+void draw() {
   int min = minute();
   int secs = second();
-
-  //if (min % 5 == 0 && secs == 0){ // DETTE ER DEN DER SKAL BRUGES ENDELIGT - Og setValues-kaldet (ovenfor) skal fjernes
-  if (min/* % 5 == 0*/ ==16 && secs == 45) {  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
-    println("Checking server for updated data ...");
-    getDataValues();
-    valuesChanged = true;
+  
+  if (min % 2 == 0 && secs == 45){ // DETTE ER DEN DER SKAL BRUGES ENDELIGT - Og setValues-kaldet (ovenfor) skal fjernes
+  //if (min/* % 5 == 0*/ == 21 && secs == 10){  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
+   // println("Checking server for updated data ...");
+   getDataValues();
+valuesChanged = true;
+   
   }
-  sky.fade(no2, noX, cO); // make the sky update its color
-  sky.animate();
-  ocean.update();
+   sky.update(no2, noX, cO); // make the sky update its color
+   sky.animate();
+   ocean.update();
   ocean.fade(no2, noX, cO);
-
+  
   fill(140, 140, 0);
 
   if (valuesChanged == false) {
