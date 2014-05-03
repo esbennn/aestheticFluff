@@ -52,7 +52,7 @@ void draw() {
   int secs = second();
   
   //if (min %  == 0 && secs == 45){ // DETTE ER DEN DER SKAL BRUGES ENDELIGT - Og setValues-kaldet (ovenfor) skal fjernes
-  if (min/* % 23 == 0*/ == 29 && secs == 25){  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
+  if (min/* % 23 == 0*/ == 36 && secs == 45){  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
    // println("Checking server for updated data ...");
    getDataValues();
 valuesChanged = true;
