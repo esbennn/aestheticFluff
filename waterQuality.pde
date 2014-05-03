@@ -61,7 +61,7 @@ class WaterQuality {
         }
         if (fishies.size()==flockOfFish-fishDiff) {
 
-          println("No more fish is going to die. " + fishDiff + " fish left the area!");
+          println("No more fish are going to die. " + fishDiff + " fish left the area!");
           valuesChanged = false;
           //  println(fishies.size());
           flockOfFish = fishies.size();

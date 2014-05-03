@@ -84,16 +84,16 @@ class Sky {
   }
   public void update(float _no2, float _noX, float _cO) {
     if (_no2 > no2) {
-      no2 += 0.3;
+      no2 += 0.2;
     }
     if (_no2 < no2) {
-      no2 -= 0.3;
+      no2 -= 0.2;
     }
     if (_noX > noX) {
-      noX += 0.3;
+      noX += 0.2;
     }
     if (_noX < noX) {
-      noX -= 0.3;
+      noX -= 0.2;
     }
     hue = int(140 - noX);
     brightness = int(100 - no2);
