@@ -8,6 +8,9 @@ class Fish {
   int H = 17;
   PImage nemo;
   int scaling = 1;
+  boolean killMe = false;
+  boolean killFish = false;
+
 
   Fish (float xpos, float ypos, float speed) {
     xspeed = speed;
@@ -16,11 +19,6 @@ class Fish {
     nemo = loadImage("fishy"+int(random(1, 4))+".png");
   }
 
-  public void setValues(float tempno2, float tempNoX, float tempcO) {
-    float no2 = tempno2;
-    float noX = tempNoX;
-    float cO = tempcO;
-  }
 
   void update() {
     boolean goingLeft = true; 
@@ -31,8 +29,13 @@ class Fish {
     y +=yspeed;
 
     if (x > width+50 || x < -50) {
-      xspeed *= -1;
-      scaling *=-1;
+      if (killFish == true) {
+        killMe = true;
+      }
+      else {
+        xspeed *= -1;
+        scaling *=-1;
+      }
     }
     if (y >=height+19 || y <= 368) {
       yspeed *= -1;
@@ -49,6 +52,13 @@ class Fish {
     image(nemo, -50, -37.5, W, H);
 
     popMatrix();
+  }
+
+  boolean getLiveOrDie() {
+    return killMe;
+  }
+  void setLiveOrDie(boolean kill) {
+    killFish = kill;
   }
 }
 
