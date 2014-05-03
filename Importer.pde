@@ -1,15 +1,4 @@
 class Importer {
-  /**
-   This needs to be optimized to take into account both 3, 4 and 5-digit
-   values in the source ! It works so far, but is far from perfect.
-   
-   --- EDIT ---
-   Has been optimized - is it working properly?
-   
-   --- TODO ---
-   clean up by moving al the data getting to a seperate class
-   EDIT: done
-   */
   private String[] lines; 
   private String htmlSource;
   private String trimmedHtmlSource = new String();
@@ -53,7 +42,6 @@ class Importer {
      meaning that there are no more tags.
      */
     trimmedHtmlSource = htmlSource.substring(1510, 1625);
- //     println("Data source in html-format:\n" + trimmedHtmlSource);
     // remove any incomplete tag at the beginning of the source string
     if (trimmedHtmlSource.indexOf(">") < trimmedHtmlSource.indexOf("<")) {
       trimmedHtmlSource = trimmedHtmlSource.substring(trimmedHtmlSource.indexOf(">") +1, trimmedHtmlSource.length()-1);
@@ -62,23 +50,21 @@ class Importer {
     if (trimmedHtmlSource.lastIndexOf("<") > trimmedHtmlSource.lastIndexOf(">")) {
       trimmedHtmlSource = trimmedHtmlSource.substring(0, trimmedHtmlSource.lastIndexOf(">")+1);
     }
-    Boolean moreTagsLeft = true;                       // any more left ? 
+    Boolean moreTagsLeft = true;      // any more html-tags left ? 
     while (moreTagsLeft) {
       int open = trimmedHtmlSource.indexOf("<");
       int close = trimmedHtmlSource.indexOf(">");
       String tempString = trimmedHtmlSource.substring(0, open) + trimmedHtmlSource.substring(close + 1, trimmedHtmlSource.length());
-      //    println("Trimming ...:\n" + tempString);  
       trimmedHtmlSource = tempString;
       if (trimmedHtmlSource.indexOf("<") == -1) {       //check if there are more tags left
         moreTagsLeft = false;                           // if there isn't... remember that
       }
     }
     if (trimmedHtmlSource.indexOf("&nbsp;") != -1){ //are there empty cells?
-      throw new NullPointerException("Hm, looks like the latest datacells are epmty.");
+      throw new NullPointerException("Hm, looks like the there's an empty cell in the latest data.");
     } 
   } 
   
-
     private void getValues() {
       /* 
        We need to save three values into variables: no2, noX and cO.

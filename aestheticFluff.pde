@@ -8,73 +8,55 @@ private Sky sky;
 private boolean valuesChanged = false;
 
 void setup() {
-
-  size(640, 360, P2D);
+  size(640, 360, P2D); //Stage size. P2D for handling gradient sky.
   imports =  new Importer();
-  try {///sadasd 
+  try {  //try grabbing the data.
     imports.getData();
     getDataValues();
   }
-  catch(Exception e) {
-    println(e);
+  catch(Exception e) { //If something goes wrong (eg no internet, server down...) 
+    println(e);        //print the error and use default values instead.
     println("Using default values instead.");
     no2 = 30.0;
     noX = 60.0;
     cO = 0.22;
   }  
   //*****
-  // SETTING TESTING VALUES!
+  // FOR TESTING VALUES AND TRANSITIONS
   //an example of low values is 10, 20, 0.19
-
-
-
   //setValues(70, 200, 0.36);
-  setValues(70, 200, 0.36);
-
-  
   //setValues(10, 20, 0.19);
-
-
+  //*****
 
   // printing values
   println("NO2: " + no2);
   println("NOx: " + noX);
   println("CO: " + cO);
 
-  //adding sky with values
+  //adding sky, wave and fish/garbage current with values
   ocean= new Wave(no2, noX, cO);
   sky = new Sky(no2, noX, cO); 
   waterLife = new WaterQuality(no2);
-
-
 }
 void draw() {
-  int min = minute();
-  int secs = second();
-  
+  int min = minute(); //get current minutes
+  int secs = second();//and seconds
 
-  //if (min %  == 0 && secs == 45){ // DETTE ER DEN DER SKAL BRUGES ENDELIGT - Og setValues-kaldet (ovenfor) skal fjernes
-
-  if (min/* % 23 == 0*/ == 44 && secs == 35){  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
-
-   // println("Checking server for updated data ...");
-   getDataValues();
-valuesChanged = true;
-   
+  if (min % 5 == 0 && secs == 0) { //runs every five minutes
+    //if (min/* % 23 == 0*/ == 44 && secs == 35){  // test-ifelse til at teste transitions ved opdateret data
+    getDataValues();
+    valuesChanged = true;
   }
-   sky.update(no2, noX, cO); // make the sky update its color and clouds
-   sky.animate();
-   ocean.update();
-  ocean.fade(no2, noX, cO);
-  
-  fill(140, 140, 0);
+  sky.update(no2, noX, cO); // make the sky update its color and clouds
+  sky.animate();            // animate sky = update colors and clouds
+  ocean.update();           // update the ocesn
+  ocean.fade(no2, noX, cO); // update oceans colors 
 
-  if (valuesChanged == false) {
+  if (valuesChanged == false) { //if values haven't been updated: jsut update fish positions
     waterLife.updateFish();
     waterLife.updateBadStuff();
   }
-
-  if (valuesChanged == true) {
+  if (valuesChanged == true) { //if values have changed, update amount of fish and garbage
     waterLife.regulateBadStuff(no2);
     waterLife.regulateFish();
     valuesChanged = waterLife.valuesChanged();
