@@ -26,8 +26,8 @@ void setup() {
   // SETTING TESTING VALUES!
   //an example of low values is 10, 20, 0.19
 
-  setValues(70, 50, 0.19);
-   //setValues(70, 200, 0.36);
+  setValues(70, 200, 0.36);
+  //setValues(70, 200, 0.36);
 
   // printing values
   println("NO2: " + no2);
@@ -44,7 +44,7 @@ void draw() {//asdsa
   int secs = second();
 
   //if (min % 5 == 0 && secs == 0){ // DETTE ER DEN DER SKAL BRUGES ENDELIGT - Og setValues-kaldet (ovenfor) skal fjernes
-  if (min/* % 5 == 0*/ ==20 && secs == 40) {  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
+  if (min/* % 5 == 0*/ ==16 && secs == 45) {  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
     println("Checking server for updated data ...");
     getDataValues();
     valuesChanged = true;
@@ -58,14 +58,13 @@ void draw() {//asdsa
 
   if (valuesChanged == false) {
     waterLife.updateFish();
-   waterLife.updateBadStuff();
+    waterLife.updateBadStuff();
   }
-  
+
   if (valuesChanged == true) {
     waterLife.regulateBadStuff(no2);
     waterLife.regulateFish();
     valuesChanged = waterLife.valuesChanged();
-   
   }
 }
 
