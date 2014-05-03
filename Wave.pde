@@ -22,24 +22,18 @@ class Wave {
     beginShape();                                            //inside this beginshape-endshape construction, a wave is being made through vertex being created inside a for-loop.
     //color of the wave is set with mapped no2 values        // the xoff is reset every time this function is called, but the yoff continues to grow, in order to diverse the look
     fill(0, no2Color, no2Color2);                            // of the wave, with the use of 2d perlin noise. The shape is completed outside the for-loop, with the last to vertex
-    // Option #1: 2D Noise                                   // points being created at (width,height) and (0,height).
+                                                             // points being created at (width,height) and (0,height).
     float xoff = 0;
     // Iterate over horizontal pixels
     for (float x = 0; x <= width; x += 5) {
       // Calculate a y value according to noise, map to 
       float y = map(noise(xoff, yoff), 0, 1, 340, noXToWave); 
-
-
       // Set the vertex
-
-
-
       vertex(x, y); 
-      // Increment x dimension for noise
+      
       xoff += 0.02;
     }
-    //println("out!");
-    // increment y dimension for noise
+    
     yoff += cOtoIncrement;
 
     vertex(width, height);
