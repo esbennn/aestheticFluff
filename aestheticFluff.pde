@@ -14,7 +14,7 @@ void setup() {
   //*****
   // SETTING TESTING VALUES!
   //an example of low values is 10, 20, 0.19
-  setValues(70, 200, 0.36);
+  //setValues(70, 200, 0.36);
   //setValues(10, 20, 0.19);
 
   //adding sky and ocean with values
@@ -26,8 +26,8 @@ void draw() {
   int min = minute();
   int secs = second();
   
-//  if (min %5  == 0 && secs == 00) { 
-    if (min/* % 23 == 0*/ == 10 && secs == 40){  // For testing purposes. It will update at the given mintue/second
+  if (min %5  == 0 && secs == 00) { 
+//    if (min/* % 23 == 0*/ == 10 && secs == 40){  // For testing purposes. It will update at the given mintue/second
     // println("Checking server for updated data ...");
     float tempNo2 = no2;  //store the current values temporaryli
     float tempNoX = noX;
