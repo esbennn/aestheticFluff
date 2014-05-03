@@ -27,8 +27,11 @@ void setup() {
   //an example of low values is 10, 20, 0.19
 
 
-
+<<<<<<< HEAD
   //setValues(70, 200, 0.36);
+=======
+  //setValues(10, 200, 0.36);
+>>>>>>> dc80d558162180da97becdbe3ebdef62c4c856e7
   //setValues(70, 200, 0.36);
 
   
@@ -52,11 +55,13 @@ void draw() {
   int min = minute();
   int secs = second();
   
-
+<<<<<<< HEAD
+  //if (min % 2 == 0 && secs == 45){ // DETTE ER DEN DER SKAL BRUGES ENDELIGT - Og setValues-kaldet (ovenfor) skal fjernes
+  if (min/* % 5 == 0*/ == 27 && secs == 20){  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
+=======
   //if (min %  == 0 && secs == 45){ // DETTE ER DEN DER SKAL BRUGES ENDELIGT - Og setValues-kaldet (ovenfor) skal fjernes
-
-  if (min/* % 23 == 0*/ == 36 && secs == 45){  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
-
+  if (min/* % 23 == 0*/ == 29 && secs == 25){  // Den her opdaterer når du beder den om det hans! Programmet bruger lige nu faste høje tal, og opdaterer når du beder den om det.
+>>>>>>> dc80d558162180da97becdbe3ebdef62c4c856e7
    // println("Checking server for updated data ...");
    getDataValues();
 valuesChanged = true;
