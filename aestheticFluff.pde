@@ -26,9 +26,7 @@ void setup() {
   //*****
   // SETTING TESTING VALUES!
   //an example of low values is 10, 20, 0.19
-  
   //setValues(10, 20, 0.19);
-
   //setValues(70, 200, 0.36);
   //*****
 
@@ -46,6 +44,7 @@ void setup() {
   badStuff = new ArrayList<Garbage>();
   
   float no2Mapped = map(no2, 25, 70, 30, 0);
+  float noXMapped = map(noX, 40, 250, 0, 10);
 
   for (int i=0; i<no2Mapped; i++) {
 
