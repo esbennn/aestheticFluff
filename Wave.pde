@@ -28,7 +28,7 @@ class Wave {
       // Calculate a y value according to noise, map to 
       float y = map(noise(xoff, yoff), 0, 1, 340, noXToWave); // Option #1: 2D Noise
 
-      // float y = map(noise(xoff), 0, 1, 200,300);    // Option #2: 1D Noise
+        // float y = map(noise(xoff), 0, 1, 200,300);    // Option #2: 1D Noise
       // Set the vertex
 
 
@@ -47,37 +47,37 @@ class Wave {
     endShape(CLOSE);
   }
   public void fade(float _no2, float _noX, float _cO) {
-    
-    
+
+
     float _no2Color = map(no2, 10, 150, 30, 255); 
     float _no2Color2 = map(no2, 10, 150, 80, 0); 
     float _cOtoIncrement = map(cO, 0.18, 0.50, 0.003, 0.01);
     float _noXToWave = map(noX, 10, 250, 260, 0);
-    
+
     if (_no2Color > no2Color) {
       no2Color += 0.1;
     }
-      if (_no2Color2 > no2Color2) {
+    if (_no2Color2 > no2Color2) {
       no2Color2 += 0.1;
     }
     if (_cOtoIncrement > cOtoIncrement) {
       cOtoIncrement += 0.0001;
     }
-        if (_noXToWave > noXToWave) {
+    if (_noXToWave > noXToWave) {
       noXToWave += 0.1;
     }
-    
-    
+
+
     if (_no2Color < no2Color) {
       no2Color -= 0.1;
     }
-      if (_no2Color2 < no2Color2) {
+    if (_no2Color2 < no2Color2) {
       no2Color2 -= 0.1;
     }
     if (_cOtoIncrement <cOtoIncrement) {
       cOtoIncrement -= 0.0001;
     }
-        if (_noXToWave < noXToWave) {
+    if (_noXToWave < noXToWave) {
       noXToWave -= 0.1;
     }
     // println("nox: " + noX + "no2: " + no2);

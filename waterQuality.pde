@@ -1,16 +1,15 @@
 class WaterQuality {
-  ArrayList <Fish> fishies;
-  ArrayList <Garbage> badStuff;
-  boolean valuesChanged = true;
-  int flockOfFish;
-  int amountOfGarbage;
-  float fishDiff;
-  float no2Mapped;
-  float no2MappedUpdated;
-  float no2;
-  boolean reset = false;
-  float fishIncoming = 0;
-  float garbageIncoming = 0;
+  private ArrayList <Fish> fishies;
+  private ArrayList <Garbage> badStuff;
+  public boolean valuesChanged = true;
+  private int flockOfFish;
+  private int amountOfGarbage;
+  private float fishDiff;
+  private float no2Mapped;
+  private float no2MappedUpdated;
+  private float no2;
+  private float fishIncoming = 0;
+  private float garbageIncoming = 0;
 
   WaterQuality(float _no2) {
     no2 = _no2;
@@ -33,13 +32,13 @@ class WaterQuality {
     amountOfGarbage = badStuff.size();
   }
 
-  void updateFish() {
+  public void updateFish() {
     for (int i=0; i<fishies.size(); i++) { 
       fishies.get(i).setLiveOrDie(false);
       fishies.get(i).update();
     }
   }
-  void regulateFish() {
+  public void regulateFish() {
 
     // println("no2 "+no2Mapped + "update " + no2MappedUpdated);
 
@@ -83,13 +82,13 @@ class WaterQuality {
       println("No more fish incoming! " + fishDiff + " fish came to these waters!");
     }
   }
-  void updateBadStuff() {
+  public void updateBadStuff() {
     for (int i = 0; i<badStuff.size();i++) {
       badStuff.get(i).update();
     }
   }
 
-  void regulateBadStuff(float _newNo2) {
+  public void regulateBadStuff(float _newNo2) {
     float newNo2 = _newNo2;
     no2MappedUpdated = map(newNo2, 25, 75, 30, 0);
     fishDiff = round(abs(no2MappedUpdated-no2Mapped));
@@ -101,34 +100,30 @@ class WaterQuality {
           badStuff.get(i).update();
           if (badStuff.get(i).getLiveOrDie() == true) {
             badStuff.remove(i);
-        
-            
           }
         }
         else {
           badStuff.get(i).update();
         }
 
-   /*     if (badStuff.size()==amountOfGarbage-fishDiff) {
-          amountOfGarbage = badStuff.size();
-          println("garbageimrun!!!");
-        }*/
+        /*     if (badStuff.size()==amountOfGarbage-fishDiff) {
+         amountOfGarbage = badStuff.size();
+         println("garbageimrun!!!");
+         }*/
       }
     }
     if (no2Mapped>no2MappedUpdated) {
       println("this big is badstuff " + badStuff.size());
-     while (garbageIncoming <abs(fishDiff)) {
+      while (garbageIncoming <abs (fishDiff)) {
         badStuff.add(new Garbage (random(37.5, 640), 0, 0));
         garbageIncoming++;
       }
-      
     }
-    
-      updateBadStuff();
 
+    updateBadStuff();
   }
 
-  boolean valuesChanged() {
+  public boolean valuesChanged() {
 
     return valuesChanged;
   }

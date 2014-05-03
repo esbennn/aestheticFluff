@@ -1,4 +1,4 @@
-class Garbage extends Fish {
+class Garbage extends Fish { //inherits most functions and variables from fish class
 
   Garbage(float xpos, float ypos, float speed) {
     super(xpos, ypos, speed);
@@ -10,13 +10,13 @@ class Garbage extends Fish {
     translate(x, y);
 
     y +=yspeed;
-    if (y<height/1.15) {
+    if (y<height/1.15) {  //as long as its above the lowest part of the stage, the garbage will fly quicker
       y+=1;
     }
 
     if (y >=height+19) {
 
-      if (killFish == true) {
+      if (killFish == true) { // 
         y +=0.1;
       }
       else {
