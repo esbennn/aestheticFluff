@@ -26,8 +26,8 @@ void draw() {
   int min = minute();
   int secs = second();
   
-  if (min %5  == 0 && secs == 00) { 
-//    if (min/* % 23 == 0*/ == 10 && secs == 40){  // For testing purposes. It will update at the given mintue/second
+  if (min %5  == 0 && secs == 00 && valuesChanged == false) { 
+ //   if (min/* % 23 == 0*/ == 25 && secs == 30){  // For testing purposes. It will update at the given mintue/second
     // println("Checking server for updated data ...");
     float tempNo2 = no2;  //store the current values temporaryli
     float tempNoX = noX;
