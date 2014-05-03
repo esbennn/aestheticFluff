@@ -11,7 +11,7 @@ class Wave {
     float no2 = tempno2;
     float noX = tempNoX;
     float cO = tempcO;
-
+    //values are mapped
     no2Color = map(no2, 10, 150, 30, 255); 
     no2Color2 = map(no2, 10, 150, 80, 0); 
     cOtoIncrement = map(cO, 0.18, 0.50, 0.003, 0.01);
@@ -19,16 +19,17 @@ class Wave {
   }
   void update() {
     // We are going to draw a polygon out of the wave points
-    beginShape(); 
-    fill(0, no2Color, no2Color2);
-    // Option #1: 2D Noise
+    beginShape();                                            //inside this beginshape-endshape construction, a wave is being made through vertex being created inside a for-loop.
+    //color of the wave is set with mapped no2 values        // the xoff is reset every time this function is called, but the yoff continues to grow, in order to diverse the look
+    fill(0, no2Color, no2Color2);                            // of the wave, with the use of 2d perlin noise. The shape is completed outside the for-loop, with the last to vertex
+    // Option #1: 2D Noise                                   // points being created at (width,height) and (0,height).
     float xoff = 0;
     // Iterate over horizontal pixels
     for (float x = 0; x <= width; x += 5) {
       // Calculate a y value according to noise, map to 
-      float y = map(noise(xoff, yoff), 0, 1, 340, noXToWave); // Option #1: 2D Noise
+      float y = map(noise(xoff, yoff), 0, 1, 340, noXToWave); 
 
-        // float y = map(noise(xoff), 0, 1, 200,300);    // Option #2: 1D Noise
+
       // Set the vertex
 
 
@@ -46,7 +47,7 @@ class Wave {
 
     endShape(CLOSE);
   }
-  public void fade(float _no2, float _noX, float _cO) {
+  public void fade(float _no2, float _noX, float _cO) { //Maps the imported data, and changes the original mappings slowly until they are equal to the imported mappings
 
 
     float _no2Color = map(no2, 10, 150, 30, 255); 
@@ -80,7 +81,6 @@ class Wave {
     if (_noXToWave < noXToWave) {
       noXToWave -= 0.1;
     }
-    // println("nox: " + noX + "no2: " + no2);
   }
 }
 
