@@ -40,7 +40,7 @@ class Sky {
     addingClouds = true;
   }
   
-  public void fadeOutClouds(float _cO) {
+  public void fadeOutClouds(float _cO, float _no2, float _noX) {
     for (Cloud cloud : clouds) {
       float cloudAlpha = cloud.getAlpha();
       if (cloudAlpha > 0) {
@@ -49,6 +49,8 @@ class Sky {
     }
     if (clouds.get(0).getAlpha() < 0.10) {
       // clouds = new ArrayList<Cloud>();
+      noX = _noX;
+      no2 = _no2;
       cO = _cO;
       addClouds();
     }
@@ -85,7 +87,7 @@ class Sky {
     setColors();                   //reset colors
     
     if (_cO != cO) {       //same same
-      fadeOutClouds(_cO);
+      fadeOutClouds(_cO, _no2, _noX);
     }
     if (addingClouds) {
       fadeInClouds();
